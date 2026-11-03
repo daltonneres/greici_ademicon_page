@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Greici Stepaniack | Consultora de Investimentos Autorizada Ademicon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav><div class="w"><b>Greici Stepaniack</b>
+<div class="l"><a href="#sobre">Sobre</a><a href="#solucoes">Soluções</a><a href="#simulador">Simulador</a><a href="#depoimentos">Depoimentos</a><a href="#reuniao">Reunião</a></div>
+<a class="btn" href="#reuniao" style="padding:9px 18px">Agendar</a></div></nav>
+
+<header class="hero"><div class="w">
+<div>
+<span class="tag">Consultora de Investimentos | Autorizada Ademicon</span>
+<h1>Eu planejo com você o caminho para transformar seus objetivos em conquistas.</h1>
+<p class="obj">🏡 Casa própria • 🚗 Veículos • ✈️ Viagens • 💰 Construção de patrimônio</p><p>Vamos encontrar juntos a melhor estratégia para o seu momento. Atendimento próximo, claro e sem pressão, de Dois Vizinhos para todo o Brasil.</p>
+<div class="cta"><a class="btn" href="#simulador">Fazer simulação grátis</a><a class="btn o" href="#reuniao">Agendar conversa</a></div>
+<div class="stats"><div><b><span data-n="27">27</span></b>estados atendidos (UFs)</div><div><b><span data-n="4">4</span></b>frentes de conquista</div><div><b><span data-n="100" data-s="%">100%</span></b>acompanhamento</div><div><b><span data-n="30" data-s=" min">30 min</span></b>primeira conversa</div></div>
+</div>
+<img alt="Greici Stepaniack, consultora de investimentos da Ademicon" src="img/greici.jpg">
+</div></header>
+
+<section id="sobre"><div class="w two">
+<div><h2>Quem é a Greici</h2>
+<p>Sou Greici, consultora de investimentos autorizada da Ademicon em Dois Vizinhos, no Paraná. Ajudo pessoas e famílias de todo o Brasil a transformarem o sonho da casa própria, do carro novo, da viagem ou da construção de patrimônio em um plano organizado, com parcelas planejadas e sem a armadilha dos juros.</p>
+<p>Meu trabalho começa ouvindo: qual é o seu objetivo, quanto cabe no mês e em quanto tempo você quer chegar lá. Só depois eu apresento as opções, explicando cada número.</p>
+<p>Atendo presencialmente em Dois Vizinhos e online em qualquer cidade do país, por videochamada e WhatsApp.</p></div>
+<div class="tl">
+<div><b>Base</b><span>Ademicon de Dois Vizinhos, Paraná</span></div>
+<div><b>Alcance</b><span>Atendimento para todo o Brasil, de forma digital</span></div>
+<div><b>Hoje</b><span>Consultora de Investimentos, atendendo clientes presencialmente e online</span></div>
+<div><b>Missão</b><span>Fazer cada cliente entender o que está contratando e conquistar o objetivo no prazo certo</span></div>
+</div></div></section>
+
+<section class="alt" id="solucoes"><div class="w">
+<h2>O que eu ofereço</h2>
+<p>Soluções de consórcio e planejamento para diferentes momentos de vida.</p>
+<div class="grid">
+<div class="card"><h3>Consórcio de imóveis</h3><p>Casa, apartamento, terreno, reforma ou construção. Use o crédito para comprar à vista e negociar melhor.</p></div>
+<div class="card"><h3>Consórcio de veículos</h3><p>Carros, motos e utilitários, com parcelas que cabem no mês e sem entrada obrigatória.</p></div>
+<div class="card"><h3>Consórcio de serviços</h3><p>Viagens, estudos, cirurgias, festas e projetos pessoais planejados com antecedência.</p></div>
+<div class="card"><h3>Investimento patrimonial</h3><p>Cotas como estratégia para formar patrimônio, com lances e possibilidade de venda da carta contemplada.</p></div>
+<div class="card"><h3>Estratégia de lance</h3><p>Orientação sobre lance livre, fixo e embutido para antecipar a sua contemplação.</p></div>
+<div class="card"><h3>Planejamento sob medida</h3><p>Análise do seu orçamento para montar prazo, crédito e parcela que façam sentido para você.</p></div>
+</div></div></section>
+
+<section><div class="w">
+<h2>Como funciona a negociação</h2>
+<p>Um processo simples, transparente e sem surpresas.</p>
+<div class="steps">
+<div><h3>Conversa</h3><p>Entendo seu objetivo, prazo e quanto você pode investir por mês.</p></div>
+<div><h3>Simulação</h3><p>Apresento opções de crédito e parcela, com todos os custos à mostra.</p></div>
+<div><h3>Contrato</h3><p>Você escolhe o plano e eu explico cada cláusula antes de assinar.</p></div>
+<div><h3>Acompanhamento</h3><p>Acompanho assembleias, estratégias de lance e a sua contemplação.</p></div>
+<div><h3>Conquista</h3><p>Com a carta de crédito em mãos, você negocia à vista e realiza o objetivo.</p></div>
+</div></div></section>
+
+<section class="alt" id="simulador"><div class="w two">
+<div class="card"><h2 style="font-size:1.8rem">Simule seu consórcio</h2>
+<label for="tipo">Objetivo</label>
+<select id="tipo"><option value="0.20">Imóvel</option><option value="0.16">Veículo</option><option value="0.18">Serviços</option></select>
+<label for="cred">Crédito desejado: <b id="credv"></b></label>
+<input id="cred" type="range" min="30000" max="1000000" step="10000" value="300000">
+<label for="prazo">Prazo</label>
+<select id="prazo"><option>60</option><option>80</option><option selected>120</option><option>150</option><option>180</option><option>200</option></select>
+</div>
+<div class="res"><div style="opacity:.75">Parcela estimada por mês</div><div class="big" id="pc"></div>
+<div class="row"><span>Consórcio (total pago)</span><b id="tc"></b></div>
+<div class="row"><span>Financiamento comparado (total)</span><b id="tf"></b></div>
+<div class="row"><span>Diferença estimada</span><b id="ec"></b></div>
+<small>Simulação ilustrativa: considera taxa de administração média e 2% de fundo de reserva, e financiamento a 1,2% ao mês. Valores reais dependem do plano, do grupo e das regras vigentes da Ademicon. Peça uma simulação oficial comigo.</small>
+<p style="margin:18px 0 0"><a class="btn" href="#reuniao">Quero a simulação oficial</a></p></div>
+</div></section>
+
+<section id="depoimentos"><div class="w">
+<h2>O que os clientes dizem</h2>
+<div class="grid">
+<div class="card q"><p>“Explicou cada detalhe com paciência e me ajudou a montar uma estratégia de lance. Hoje estou na minha casa.”</p><footer>[Nome do cliente], contemplado em imóvel</footer></div>
+<div class="card q"><p>“Atendimento rápido, sem enrolação. Consegui meu carro planejando com calma.”</p><footer>[Nome do cliente], consórcio de veículo</footer></div>
+<div class="card q"><p>“Entendi pela primeira vez como funciona um consórcio. Recomendo para quem quer investir com segurança.”</p><footer>[Nome do cliente], investidor</footer></div>
+</div>
+<p class="note">Substitua os exemplos acima por depoimentos reais e autorizados de clientes.</p>
+</div></section>
+
+<section class="alt"><div class="w two">
+<div><h2>Dúvidas frequentes</h2>
+<details><summary>Consórcio tem juros?</summary><p>Não. Há taxa de administração e fundo de reserva, definidos em contrato, mas não há juros como no financiamento.</p></details>
+<details><summary>Como sou contemplado?</summary><p>Por sorteio ou por lance, nas assembleias mensais do grupo.</p></details>
+<details><summary>Posso usar o crédito para o que eu quiser?</summary><p>Você escolhe a categoria (imóvel, veículo ou serviços) e usa a carta de crédito dentro das regras dela.</p></details>
+<details><summary>Posso desistir?</summary><p>Sim, mas as regras de devolução seguem o contrato. Eu explico tudo antes de você assinar.</p></details></div>
+<div><h2>Fale comigo</h2><p>Sem compromisso. Conte seu objetivo e eu volto com as melhores opções para o seu momento.</p>
+<div class="ct"><a href="tel:+5546984030196">📞 (46) 98403-0196</a><a href="mailto:greicigesser825@gmail.com">✉️ greicigesser825@gmail.com</a></div><div class="cta"><a class="btn" id="wa1" href="#">Chamar no WhatsApp</a></div></div>
+</div></section>
+
+<section id="local"><div class="w two">
+<div><h2>Onde estou</h2><p>Atendo na Ademicon de Dois Vizinhos, no sudoeste do Paraná, e também online para clientes de todo o Brasil.</p><p>Quer passar aqui? Abra a rota no mapa e traga suas dúvidas, ou chame no WhatsApp para marcar um horário.</p><div class="cta"><a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Ademicon+Dois+Vizinhos+PR">Abrir no Google Maps</a></div></div>
+<div class="map"><div><div class="pin"></div><h3>Ademicon Dois Vizinhos</h3><p style="margin:0 auto">Paraná, Brasil<br>Atendimento presencial e online</p></div></div>
+</div></section>
+
+<section id="reuniao"><div class="w two">
+<div><h2>Agende sua reunião</h2><p>Escolha o melhor dia e horário. A conversa dura cerca de 30 minutos e pode ser presencial ou por vídeo.</p>
+<label>Dia</label><div class="chips" id="dias"></div>
+<label>Horário</label><div class="chips" id="horas"></div>
+<label for="fmt">Formato</label><select id="fmt"><option>Videochamada</option><option>Presencial</option><option>Ligação</option></select></div>
+<form id="f" class="card" onsubmit="return false">
+<h3>Seus dados</h3>
+<label for="n">Nome</label><input id="n" required autocomplete="name">
+<label for="t">WhatsApp</label><input id="t" required inputmode="tel" autocomplete="tel" placeholder="(46) 99999-9999">
+<label for="e">E-mail</label><input id="e" type="email" autocomplete="email">
+<label for="i">Tenho interesse em</label><select id="i"><option>Imóvel</option><option>Veículo</option><option>Serviços</option><option>Investimento</option></select>
+<p style="margin-top:18px"><button class="btn" id="go" type="button">Confirmar pelo WhatsApp</button></p>
+<div class="ok" id="ok"></div>
+<p class="note">Ao enviar, seus dados vão direto para a Greici pelo WhatsApp. Nada é armazenado nesta página.</p>
+</form></div></section>
+
+<footer class="f"><div class="w"><b>Greici Stepaniack | Consultora de Investimentos Autorizada Ademicon</b>
+<p>Página independente da consultora. Ademicon é marca de seus titulares. Consórcio é um planejamento financeiro com taxas de administração e fundo de reserva; contemplação por sorteio ou lance, sem garantia de prazo. Simulações ilustrativas não constituem oferta. Consulte as regras do plano e o contrato.</p><p class="dev">Desenvolvido por <a target="_blank" rel="noopener" href="https://linkneres.vercel.app/">Dalton José Neres | Desenvolvedor Full Stack</a></p></div></footer>
+
+<a class="btn wa" id="wa2" href="#">WhatsApp</a>
+
+<script src="script.js"></script>
+</body>
+</html>
