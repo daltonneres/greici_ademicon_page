@@ -1,5 +1,5 @@
 :root{color-scheme:dark;--bg:#1A1A1A;--surface:#242424;--ink:#fff;--mute:#cfcfcf;--red:#CE2616;--red-ink:#fff;--red-soft:#F87171;--wood:#2A1615;--line:#3d2d2c;--dark:#991B1B;--dark-ink:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-html{scroll-behavior:smooth;scroll-padding-top:calc(72px + env(safe-area-inset-top,0px))}
+html{scroll-behavior:smooth;scroll-padding-top:calc(56px + env(safe-area-inset-top,0px))}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 Ubuntu,system-ui,sans-serif}
 h1,h2,h3{font-family:Ubuntu,system-ui,sans-serif;line-height:1.1;margin:0 0 .5em;letter-spacing:-.02em}
@@ -16,9 +16,9 @@ section{padding:72px 0}
 .btn:focus-visible,input:focus-visible,select:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--red);outline-offset:3px}
 nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:30}
-nav .w{display:flex;align-items:center;justify-content:space-between;height:62px;gap:12px}
-nav b{font:700 1.05rem Ubuntu,sans-serif}
-nav .l{display:flex;gap:20px;font-size:.95rem}
+nav .w{display:flex;align-items:center;justify-content:space-between;height:46px;gap:12px}
+nav b{font:700 .95rem Ubuntu,sans-serif}
+nav .l{display:flex;gap:18px;font-size:.85rem}
 nav .l a{text-decoration:none;color:var(--mute)}
 @media(max-width:760px){nav .l{display:none}}
 .hero{padding:56px 0 72px}
@@ -210,3 +210,15 @@ dialog .note{margin:12px 0 0}
 .hlt{font:700 1.25rem Ubuntu,sans-serif;color:var(--red-soft);max-width:none}
 .vs{margin:22px 0}.vs p{line-height:1.9}
 @media(prefers-reduced-motion:reduce){.fl li::after{animation:none}.lp{animation:none}.bar i{transition:none}}
+
+/* Cabeçalho enxuto, WhatsApp discreto e voltar ao início */
+.nb{font:600 .85rem Ubuntu,sans-serif;text-decoration:none;color:var(--ink);padding:6px 14px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--line);transition:background .2s,box-shadow .2s}
+.nb:hover{background:var(--red);box-shadow:none}
+.wa,.top{position:fixed;right:16px;z-index:25;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:rgba(36,36,36,.88);border:1px solid var(--line);color:var(--mute);padding:0;cursor:pointer;backdrop-filter:blur(6px);transition:background .2s,color .2s,opacity .3s,transform .3s}
+.wa{bottom:calc(16px + env(safe-area-inset-bottom,0px))}
+.top{bottom:calc(66px + env(safe-area-inset-bottom,0px));opacity:0;pointer-events:none;transform:translateY(8px)}
+.top.on{opacity:1;pointer-events:auto;transform:none}
+.wa svg,.top svg{width:20px;height:20px;fill:currentColor}
+.wa:hover{background:#25D366;color:#fff;border-color:#25D366}
+.top:hover{background:var(--red);color:#fff;border-color:var(--red)}
+@media(prefers-reduced-motion:reduce){.top{transition:none}}

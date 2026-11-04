@@ -24,10 +24,16 @@ setTimeout(t,2400);
 var dia="",hora="";
 function chips(box,items,set){items.forEach(function(it){var b=document.createElement("button");b.type="button";b.className="chip";b.textContent=it;b.setAttribute("aria-pressed","false");
 b.onclick=function(){box.querySelectorAll(".chip").forEach(function(c){c.setAttribute("aria-pressed","false")});b.setAttribute("aria-pressed","true");set(it)};box.appendChild(b)})}
-var ds=[],d=new Date();
-while(ds.length<6){d.setDate(d.getDate()+1);if(d.getDay()>0&&d.getDay()<6)ds.push(d.toLocaleDateString("pt-BR",{weekday:"short",day:"2-digit",month:"2-digit"}))}
-chips($("dias"),ds,function(v){dia=v});
-chips($("horas"),["09:00","10:00","11:00","14:00","15:00","16:00","17:00"],function(v){hora=v});
+var AV={dias:[1,2,3,4,5],horas:["09:00","10:00","11:00","14:00","15:00","16:00","17:00"],dias_bloqueados:[],slots_bloqueados:[],slots_ocupados:[],janela:6},iso={};
+function ymd(x){return x.getFullYear()+"-"+("0"+(x.getMonth()+1)).slice(-2)+"-"+("0"+x.getDate()).slice(-2)}
+function livres(k){return AV.horas.filter(function(h){var s=k+"T"+h;return AV.slots_bloqueados.indexOf(s)<0&&AV.slots_ocupados.indexOf(s)<0})}
+function montar(){var ds=[],x=new Date(),n=0;iso={};dia="";hora="";$("dias").innerHTML="";$("horas").innerHTML="";
+while(ds.length<AV.janela&&n++<120){x.setDate(x.getDate()+1);var k=ymd(x);if(AV.dias.indexOf(x.getDay())<0||AV.dias_bloqueados.indexOf(k)>-1||!livres(k).length)continue;var L=x.toLocaleDateString("pt-BR",{weekday:"short",day:"2-digit",month:"2-digit"});ds.push(L);iso[L]=k}
+if(!ds.length){$("horas").textContent="Sem horários livres no momento. Chame a Greici pelo WhatsApp.";return}
+chips($("dias"),ds,function(v){dia=v;hora="";$("horas").innerHTML="";chips($("horas"),livres(iso[v]),function(h){hora=h})})}
+montar();
+/* Disponibilidade vinda do painel (disponibilidade.json ou API) */
+try{fetch(LEAD_ENDPOINT?LEAD_ENDPOINT+"/disponibilidade":"disponibilidade.json",{cache:"no-store"}).then(function(r){return r.ok?r.json():{}}).then(function(o){for(var k in o)AV[k]=o[k];montar()}).catch(function(){})}catch(x){}
 
 document.querySelectorAll(".tel").forEach(function(el){el.addEventListener("input",function(){
 var v=this.value.replace(/\D/g,"").slice(0,11);
@@ -40,7 +46,7 @@ var n=$("n").value.trim(),t=$("t").value.trim(),e=$("e").value.trim(),o=$("ok");
 o.style.display="block";
 if(!n||t.replace(/\D/g,"").length<10||!dia||!hora){o.textContent="Preencha nome, WhatsApp válido, dia e horário para confirmar.";return}
 var m="Olá, Greici! Sou "+n+" ("+t+"). Quero agendar uma reunião: "+dia+" às "+hora+", formato "+$("fmt").value+". Interesse: "+$("i").value+"."+(e?" E-mail: "+e:"");
-o.textContent="Abrindo o WhatsApp para confirmar seu horário…";sendLead({tipo:"reuniao",nome:n,whatsapp:t,email:e,dia:dia,hora:hora,formato:$("fmt").value,interesse:$("i").value});
+o.textContent="Abrindo o WhatsApp para confirmar seu horário…";sendLead({tipo:"reuniao",nome:n,whatsapp:t,email:e,dia:dia,hora:hora,quando:(iso[dia]||"")+"T"+hora,formato:$("fmt").value,interesse:$("i").value});
 if(!window.open(link(m),"_blank"))location.href=link(m);
 };
 
@@ -113,4 +119,28 @@ w("bc1",C);w("bc2",cons-C);w("bf1",C);w("bf2",ft-C);
 $("bct").textContent="Total de "+fm(cons)+" · parcela de cerca de "+fm(cons/N)+" por mês";
 $("bft").textContent="Total de "+fm(ft)+" · parcela de cerca de "+fm(fp)+" por mês";
 $("dfx").textContent="Neste exemplo, o financiamento custa cerca de "+fm(ft-cons)+" a mais.";
+})();
+
+/* Botão voltar ao início */
+(function(){var b=$("top");if(!b)return;
+function s(){b.classList.toggle("on",scrollY>600)}
+addEventListener("scroll",s,{passive:true});s();
+b.onclick=function(){scrollTo({top:0,behavior:rm?"auto":"smooth"})}})();
+
+/* Medição anônima da visita (tempo ativo, rolagem e interesse por categoria). Só envia se LEAD_ENDPOINT estiver definido. */
+(function(){
+var t0=Date.now(),act=0,last=t0,vis=!document.hidden,mx=0,cat={},sent=false;
+var CATS=["imovel","veiculo","servicos","investimento"];
+function tick(){var n=Date.now();if(vis)act+=n-last;last=n}
+document.addEventListener("visibilitychange",function(){tick();vis=!document.hidden;if(document.hidden)fim()});
+addEventListener("scroll",function(){var h=document.documentElement.scrollHeight-innerHeight;if(h>0)mx=Math.max(mx,Math.round(scrollY/h*100))},{passive:true});
+function add(c,p){cat[c]=(cat[c]||0)+p}
+document.querySelectorAll("#solucoes .card").forEach(function(el,i){var c=CATS[i];if(!c)return;
+el.addEventListener("click",function(){add(c,3)});
+if("IntersectionObserver" in window){var to;new IntersectionObserver(function(en){en.forEach(function(x){clearTimeout(to);if(x.isIntersecting)to=setTimeout(function(){add(c,1)},2000)})},{threshold:.6}).observe(el)}});
+["i","pi"].forEach(function(id){var s=$(id);if(s)s.addEventListener("change",function(){add(["imovel","veiculo","servicos","investimento"][s.selectedIndex]||"",5)})});
+function fim(){if(sent||(act<3000&&!Object.keys(cat).length))return;tick();
+var d={tipo:"visita",segundos:Math.round(act/1000),rolagem:mx,interesses:cat,tela:innerWidth<760?"mobile":"desktop"};
+if(!LEAD_ENDPOINT)return;sent=true;sendLead(d)}
+addEventListener("pagehide",fim);
 })();

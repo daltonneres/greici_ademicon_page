@@ -1,0 +1,9 @@
+{
+  "rewrites": [
+    { "source": "/painel", "destination": "/admin.html" },
+    { "source": "/painel/", "destination": "/admin.html" }
+  ],
+  "headers": [
+    { "source": "/(painel|admin.html)", "headers": [ { "key": "X-Robots-Tag", "value": "noindex, nofollow" } ] }
+  ]
+}
