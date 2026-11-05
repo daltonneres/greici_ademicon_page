@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Painel | Greici Stepaniack</title>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/jpeg" href="/img/favicon.png">
+<link rel="apple-touch-icon" href="/img/favicon.png">
+<link rel="stylesheet" href="/admin.css">
+</head>
+<body>
+<main id="lg" class="lg">
+<form id="lf" class="card" autocomplete="on">
+<h1>Painel da Greici</h1><p class="m">Acesso restrito.</p>
+<label for="u">E-mail</label><input id="u" type="email" autocomplete="username" required>
+<label for="p">Senha</label><input id="p" type="password" autocomplete="current-password" required>
+<button class="b" type="submit">Entrar</button>
+<p class="er" id="er" role="alert"></p>
+<p class="m" style="text-align:center;margin:14px 0 0"><a href="/">← Voltar ao site</a></p>
+</form></main>
+
+<div id="app" hidden>
+<header class="bar"><b>Painel</b>
+<nav id="tabs" aria-label="Seções"><button data-v="geral" aria-pressed="true">Visão geral</button><button data-v="leads">Leads</button><button data-v="agenda">Agenda</button><button data-v="disp">Disponibilidade</button><button data-v="analise">Análises</button><button data-v="config">Configurações</button></nav>
+<a class="g" href="/" target="_blank" rel="noopener">Ver site ↗</a><button class="g" id="out">Sair</button></header>
+<div id="demo" class="dm" hidden>Mostrando dados de exemplo. <button class="g" id="demoOff">Ocultar</button></div>
+
+<section id="v-geral" class="v"><div class="kp" id="kp"></div><h2>Últimos leads</h2><div id="ult"></div></section>
+
+<section id="v-leads" class="v" hidden>
+<div class="fl"><input id="q" placeholder="Buscar nome ou WhatsApp" aria-label="Buscar"><select id="fc" aria-label="Categoria"><option value="">Todas as categorias</option><option value="imovel">Imóvel</option><option value="veiculo">Veículo</option><option value="servicos">Serviços</option><option value="investimento">Investimento</option></select><select id="fs" aria-label="Status"><option value="">Todos os status</option><option>novo</option><option>contatado</option><option>negociando</option><option>fechado</option><option>perdido</option></select><button class="g" id="csv">Exportar CSV</button></div>
+<div class="tw2"><table><thead><tr><th>Data</th><th>Nome</th><th>Categoria</th><th>Origem</th><th>Status</th><th></th></tr></thead><tbody id="lb"></tbody></table></div></section>
+
+<section id="v-agenda" class="v" hidden>
+<div class="two"><div class="card"><div class="ch"><button class="g" id="pm" aria-label="Mês anterior">‹</button><b id="mt"></b><button class="g" id="nm" aria-label="Próximo mês">›</button></div><div class="cal" id="cal"></div></div>
+<div class="card"><h3 id="dt">Selecione um dia</h3><div id="dl"></div>
+<p class="act"><a class="b" target="_blank" rel="noopener" href="https://meet.google.com/new">Criar sala no Meet</a> <a class="b o" id="gn" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/u/0/r/eventedit">Novo evento no Google Agenda</a></p></div></div>
+<div id="gc" class="card"></div></section>
+
+<section id="v-disp" class="v" hidden><div class="two"><div class="card"><h3>Regra semanal</h3>
+<label>Dias de atendimento</label><div class="chips" id="adw"></div>
+<label>Horários oferecidos</label><div class="chips" id="ahr"></div>
+<label for="ajn">Quantos dias mostrar no site</label><input id="ajn" type="number" min="1" max="14"></div>
+<div class="card"><h3>Bloquear ou liberar</h3><label for="adt">Escolha uma data</label><input id="adt" type="date">
+<p class="act"><button class="g" id="abd">Bloquear dia inteiro</button></p><div class="chips" id="aslot"></div><p class="m" id="ahn">Toque num horário para bloquear ou liberar. Horários já reservados aparecem como ocupados.</p>
+<h3 style="margin-top:18px">Dias bloqueados</h3><div class="chips" id="abl"></div></div></div>
+<p class="act"><button class="b" id="asv">Salvar disponibilidade</button> <button class="g" id="adl">Baixar disponibilidade.json</button></p><p class="m" id="asm"></p></section>
+<section id="v-analise" class="v" hidden><div class="kp" id="ak"></div><div class="two"><div class="card"><h3>Interesse por categoria</h3><div id="bc"></div></div><div class="card"><h3>Tempo no site</h3><div id="bt"></div></div></div><p class="m" id="an"></p></section>
+
+<section id="v-config" class="v" hidden><div class="card">
+<h3>Integrações</h3>
+<label for="cid">ID do Google Agenda (para exibir aqui)</label><input id="cid" placeholder="exemplo@gmail.com ou ID da agenda">
+<p class="m">Em Google Agenda > Configurações da agenda > Integrar agenda. A agenda precisa estar compartilhada com esta conta para aparecer.</p>
+<button class="b" id="sv">Salvar</button> <button class="g" id="dm">Ver dados de exemplo</button>
+<p class="m">Banco de dados: <b id="db">não conectado</b>.</p></div></section>
+</div>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+<script src="private/firebase-config.js"></script>
+<script src="private/db.js"></script>
+<script src="admin.js"></script>
+</body></html>
