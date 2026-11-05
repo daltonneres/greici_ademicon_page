@@ -1,8 +1,0 @@
-{
-  "dias": [1, 2, 3, 4, 5],
-  "horas": ["09:00", "10:00", "11:00", "14:00", "15:00", "16:00", "17:00"],
-  "dias_bloqueados": [],
-  "slots_bloqueados": [],
-  "slots_ocupados": [],
-  "janela": 6
-}
