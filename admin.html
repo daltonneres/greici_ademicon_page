@@ -25,8 +25,8 @@
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
-<script src="private/firebase-config.js"></script>
-<script src="private/db.js"></script>
+<script src="firebase-config.js"></script>
+<script src="db.js"></script>
 <script>
 var $=function(i){return document.getElementById(i)},AUTH=window.DB?firebase.auth():null,GO="painel.html";
 if(AUTH)AUTH.onAuthStateChanged(function(u){if(u)location.replace(GO)});

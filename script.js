@@ -6,7 +6,7 @@ var $=function(id){return document.getElementById(id)};
 // EDITE: links dos posts do Instagram, ex: "https://www.instagram.com/p/XXXX/"
 var POSTS=[];
 var rm=matchMedia("(prefers-reduced-motion:reduce)").matches;
-function sendLead(d){d.origem=location.href;if(!window.DB){console.error("DB não carregou: confira private/firebase-config.js e private/db.js (erro 404?)");return Promise.reject(new Error("sem-db"))}return Promise.resolve(DB.lead(d)).then(function(r){if(r&&(r.ok===false||r.status>=400)&&r.status!==409){console.error("Falha ao salvar o lead:",r);throw new Error("falha-db")}return r})}
+function sendLead(d){d.origem=location.href;if(!window.DB){console.error("DB não carregou: confira firebase-config.js e db.js (erro 404?)");return Promise.reject(new Error("sem-db"))}return Promise.resolve(DB.lead(d)).then(function(r){if(r&&(r.ok===false||r.status>=400)&&r.status!==409){console.error("Falha ao salvar o lead:",r);throw new Error("falha-db")}return r})}
 function link(m){return "https://wa.me/"+NUM+"?text="+encodeURIComponent(m)}
 ["wa1","wa2","wa3"].forEach(function(x){var a=$(x);if(a){a.href=link("Olá, Greici! Vim pela sua página e quero saber mais sobre consórcio.");a.target="_blank";a.rel="noopener"}});
 
