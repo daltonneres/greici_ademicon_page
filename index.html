@@ -155,12 +155,12 @@
 <form id="f" class="card" onsubmit="return false">
 <h3>Seus dados</h3>
 <label for="n">Nome</label><input id="n" required autocomplete="name">
-<label for="t">WhatsApp</label><input class="tel" id="t" required inputmode="tel" autocomplete="tel" placeholder="(46) 99999-9999">
+<label for="t">Telefone</label><input class="tel" id="t" required inputmode="tel" autocomplete="tel" placeholder="(46) 99999-9999">
 <label for="e">E-mail</label><input id="e" type="email" autocomplete="email">
 <label for="i">Tenho interesse em</label><select id="i"><option>Imóvel</option><option>Veículo</option><option>Serviços</option><option>Investimento</option></select>
-<p style="margin-top:18px"><button class="btn" id="go" type="button">Confirmar pelo WhatsApp</button></p>
+<p style="margin-top:18px"><button class="btn" id="go" type="button">Agendar reunião</button></p>
 <div class="ok" id="ok"></div>
-<p class="note">Ao enviar, seus dados vão direto para a Greici pelo WhatsApp. Nada é armazenado nesta página.</p>
+<p class="note">Ao agendar, seus dados são enviados para a Greici, que entrará em contato dentro das próximas horas.</p>
 </form></div></section>
 
 <footer class="f"><div class="w">
@@ -188,12 +188,12 @@
 
 <dialog id="pop" aria-labelledby="pt1"><button class="x" id="px" type="button" aria-label="Fechar">×</button>
 <span class="tag">Simulação gratuita</span><h3 id="pt1">Quer uma simulação sem compromisso?</h3>
-<p>Deixe seu nome e WhatsApp e a Greici te chama com as melhores opções para o seu objetivo.</p>
+<p>Deixe seu nome e telefone e a Greici entra em contato com as melhores opções para o seu objetivo.</p>
 <input id="pn" aria-label="Nome" autocomplete="name" placeholder="Seu nome">
-<input class="tel" id="ptel" aria-label="WhatsApp" inputmode="tel" autocomplete="tel" placeholder="Seu WhatsApp (46) 99999-9999">
+<input class="tel" id="ptel" aria-label="Telefone" inputmode="tel" autocomplete="tel" placeholder="Seu telefone (46) 99999-9999">
 <select id="pi" aria-label="Objetivo"><option>Imóvel</option><option>Veículo</option><option>Serviços</option><option>Investimento</option></select>
 <button class="btn" id="pgo" type="button" style="width:100%">Quero receber minha simulação</button>
-<div class="ok" id="pok"></div><p class="note">Seus dados vão direto para a Greici pelo WhatsApp.</p></dialog>
+<div class="ok" id="pok"></div><p class="note">Seus dados são enviados para a Greici, que entrará em contato em breve.</p></dialog>
 
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>

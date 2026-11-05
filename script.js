@@ -6,7 +6,7 @@ var $=function(id){return document.getElementById(id)};
 // EDITE: links dos posts do Instagram, ex: "https://www.instagram.com/p/XXXX/"
 var POSTS=[];
 var rm=matchMedia("(prefers-reduced-motion:reduce)").matches;
-function sendLead(d){d.origem=location.href;return window.DB?DB.lead(d):Promise.resolve({ok:true,status:200})}
+function sendLead(d){d.origem=location.href;if(!window.DB){console.error("DB não carregou: confira private/firebase-config.js e private/db.js (erro 404?)");return Promise.reject(new Error("sem-db"))}return Promise.resolve(DB.lead(d)).then(function(r){if(r&&(r.ok===false||r.status>=400)&&r.status!==409){console.error("Falha ao salvar o lead:",r);throw new Error("falha-db")}return r})}
 function link(m){return "https://wa.me/"+NUM+"?text="+encodeURIComponent(m)}
 ["wa1","wa2","wa3"].forEach(function(x){var a=$(x);if(a){a.href=link("Olá, Greici! Vim pela sua página e quero saber mais sobre consórcio.");a.target="_blank";a.rel="noopener"}});
 
@@ -45,13 +45,11 @@ this.value=v})});
 $("go").onclick=function(){
 var n=$("n").value.trim(),t=$("t").value.trim(),e=$("e").value.trim(),o=$("ok");
 o.style.display="block";
-if(!n||t.replace(/\D/g,"").length<10||!dia||!hora){o.textContent="Preencha nome, WhatsApp válido, dia e horário para confirmar.";return}
-var m="Olá, Greici! Sou "+n+" ("+t+"). Quero agendar uma reunião: "+dia+" às "+hora+", formato "+$("fmt").value+". Interesse: "+$("i").value+"."+(e?" E-mail: "+e:"");
-o.textContent="Reservando seu horário…";var w=window.open("","_blank");
+if(!n||t.replace(/\D/g,"").length<10||!dia||!hora){o.textContent="Preencha nome, telefone válido, dia e horário para confirmar.";return}
+o.textContent="Reservando seu horário…";
 sendLead({tipo:"reuniao",nome:n,whatsapp:t,email:e,dia:dia,hora:hora,quando:(iso[dia]||"")+"T"+hora,formato:$("fmt").value,interesse:$("i").value}).then(function(r){
-if(r&&r.status===409){if(w)w.close();o.textContent="Esse horário acabou de ser reservado. Escolha outro, por favor.";carregarAV();return}
-o.textContent="Horário reservado! Abrindo o WhatsApp para confirmar…";
-if(w)w.location=link(m);else location.href=link(m)});
+if(r&&r.status===409){o.textContent="Esse horário acabou de ser reservado. Escolha outro, por favor.";carregarAV();return}
+o.textContent="Reunião agendada para "+dia+" às "+hora+"! Dentro das próximas horas a Greici entrará em contato com você."}).catch(function(x){console.error(x);o.textContent="Não foi possível agendar agora. Tente novamente em instantes."});
 };
 
 /* Menu com sombra ao rolar */
@@ -87,18 +85,15 @@ if(document.querySelector("dialog[open]"))return;
 try{sessionStorage.setItem(K,"1")}catch(x){}
 p.showModal();
 }
-setTimeout(show,20000);
+setTimeout(show,15000);
 $("px").onclick=function(){p.close()};
 p.addEventListener("click",function(e){if(e.target===p)p.close()});
 $("pgo").onclick=function(){
 var n=$("pn").value.trim(),t=$("ptel").value.trim(),o=$("pok");o.style.display="block";
-if(!n||t.replace(/\D/g,"").length<10){o.textContent="Informe seu nome e um WhatsApp válido.";return}
+if(!n||t.replace(/\D/g,"").length<10){o.textContent="Informe seu nome e um telefone válido.";return}
 var it=$("pi").value;
-sendLead({tipo:"popup",nome:n,whatsapp:t,interesse:it});
-o.textContent="Pronto! Abrindo o WhatsApp para a Greici enviar sua simulação…";
-var m="Olá, Greici! Sou "+n+" ("+t+"). Quero uma simulação gratuita de consórcio. Interesse: "+it+".";
-if(!window.open(link(m),"_blank"))location.href=link(m);
-setTimeout(function(){p.close()},1800);
+o.textContent="Enviando…";
+sendLead({tipo:"popup",nome:n,whatsapp:t,interesse:it}).then(function(){o.textContent="Pronto! Recebemos seu pedido. Dentro das próximas horas a Greici entrará em contato com sua simulação.";setTimeout(function(){p.close()},4000)}).catch(function(x){console.error(x);o.textContent="Não foi possível enviar agora. Tente novamente em instantes."});
 };
 })();
 /* Posts do Instagram */
@@ -145,6 +140,6 @@ if("IntersectionObserver" in window){var to;new IntersectionObserver(function(en
 ["i","pi"].forEach(function(id){var s=$(id);if(s)s.addEventListener("change",function(){add(["imovel","veiculo","servicos","investimento"][s.selectedIndex]||"",5)})});
 function fim(){if(sent||(act<3000&&!Object.keys(cat).length))return;tick();
 var d={tipo:"visita",segundos:Math.round(act/1000),rolagem:mx,interesses:cat,tela:innerWidth<760?"mobile":"desktop"};
-sent=true;sendLead(d)}
+sent=true;sendLead(d).catch(function(){})}
 addEventListener("pagehide",fim);
 })();
