@@ -267,3 +267,12 @@ footer.f .dev a{color:#fff}
 .fim p{margin-left:auto;margin-right:auto}
 .fim-b{justify-content:center}
 .fim h2{max-width:20ch;margin-left:auto;margin-right:auto}
+
+/* FAQ por abas */
+#duvidas .chips{margin:22px 0 18px}
+.fp{max-width:820px;animation:up .4s ease both}.fp[hidden]{display:none}
+.fp summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.fp summary::-webkit-details-marker{display:none}
+.fp summary::after{content:"+";flex:none;color:var(--red-soft);font-size:1.5rem;line-height:1;transition:transform .2s}
+.fp details[open]{border-color:var(--red);background:var(--wood)}.fp details[open] summary::after{transform:rotate(45deg)}
+@media(prefers-reduced-motion:reduce){.fp{animation:none}.fp summary::after{transition:none}}

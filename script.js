@@ -143,3 +143,7 @@ var d={tipo:"visita",segundos:Math.round(act/1000),rolagem:mx,interesses:cat,tel
 sent=true;sendLead(d).catch(function(){})}
 addEventListener("pagehide",fim);
 })();
+
+/* FAQ por abas */
+(function(){var ts=document.querySelectorAll("#ftabs .chip"),ps=document.querySelectorAll(".fp");
+ts.forEach(function(t,i){t.onclick=function(){ts.forEach(function(x,n){x.setAttribute("aria-pressed",n===i)});ps.forEach(function(p,n){p.hidden=n!==i;if(n===i)p.querySelectorAll("details").forEach(function(d){d.classList.add("in")})})}})})();
